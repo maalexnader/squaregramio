@@ -1,0 +1,21 @@
+.text-field {
+	display: flex;
+	width: 100%;
+	padding: 8px var(--screenHorizontalPadding, 12px);
+	align-items: center;
+	gap: 10px;
+	border-radius: 8px;
+	background: var(--highlight, #8793FF);
+}
+
+.text-field input {
+	width: 100%;
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+.text-field input:focus {
+	border: none;
+	outline: none;
+}

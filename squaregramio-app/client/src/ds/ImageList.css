@@ -1,0 +1,22 @@
+.image-list {
+	display: flex;
+	width: 100%;
+	padding: 0 var(--screenHorizontalPadding, 12px);
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 12px;
+	flex: 1 0 0;
+}
+
+.image-list .loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex: 1 0 0;
+	align-self: stretch;
+}
+
+.image-list .loader span {
+	text-align: center;
+}

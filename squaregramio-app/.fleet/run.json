@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "name": "Debug",
+            "file": "server.js",
+        },
+        
+    ]
+}

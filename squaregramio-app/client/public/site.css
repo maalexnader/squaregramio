@@ -1,0 +1,101 @@
+:root {
+	--background: #FFF7FC;
+	--highlight: #8B93FF;
+	--brand: #5755FE;
+	--textPrimary: #292626;
+	--textSecondary: #FFF7FC;
+	--screenHorizontalPadding: 12px;
+}
+
+body {
+	margin: 0;
+	height: 100vh;
+	font-family: "Poppins", sans-serif;
+	background: var(--background, #FFF7FC);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+::placeholder { /* Most modern browsers support this */
+	color: var(--textSecondary, #FFF7FC);
+	opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: var(--textSecondary, #FFF7FC);
+	opacity: 1;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: var(--textSecondary, #FFF7FC);
+	opacity: 1;
+}
+
+.title {
+	font-size: 28px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.subheadingS {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+
+.bodyMStrong {
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.bodySStrong {
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.colorBrand {
+	color: var(--brand, #5755FE);
+}
+
+.colorTextPrimary {
+	color: var(--textPrimary, #FFF7FC);
+}
+
+.centeredContainer {
+	display: flex;
+	padding-top: 16px;
+	justify-content: center;
+	align-items: center;
+	align-self: stretch;
+}
+
+#root {
+	width: 100%;
+	height: 100vh;
+}
+
+footer {
+	width: 100%;
+	display: flex;
+	padding: var(--screenHorizontalPadding, 12px);
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+	background: var(--highlight, #8793FF);
+}

@@ -1,0 +1,16 @@
+.app {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.project-name {
+	display: flex;
+	padding: 0 var(--screenHorizontalPadding, 12px);
+	align-items: center;
+	gap: var(--screenHorizontalPadding, 12px);
+	align-self: stretch;
+}
