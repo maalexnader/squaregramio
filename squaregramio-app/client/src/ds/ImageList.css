@@ -8,6 +8,24 @@
 	flex: 1 0 0;
 }
 
+.image-list .empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex: 1 0 0;
+	align-self: stretch;
+}
+
+.image-list .empty.hidden {
+	display: none;
+	animation: fadeOut 0.5s forwards;
+}
+
+.image-list .empty span {
+	text-align: center;
+}
+
 .image-list .loader {
 	display: flex;
 	justify-content: center;
@@ -17,6 +35,21 @@
 	align-self: stretch;
 }
 
-.image-list .loader span {
-	text-align: center;
+.image-list .loader.hidden {
+	display: none;
+	animation: fadeOut 0.5s forwards;
+}
+
+.image-list .loader .front {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	animation: fadeInOut 2s infinite;
+}
+
+.image-list .loader .back {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	animation: fadeOutIn 2s infinite;
 }

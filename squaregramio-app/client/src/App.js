@@ -3,13 +3,18 @@ import "./App.css";
 import Button from "./ds/Button";
 import TextField from "./ds/TextField";
 import ImageList from "./ds/ImageList";
-
+import LoadingState from "./LoadingState";
 
 function App() {
 
 	const [projectName, setProjectName] = useState('');
+	const [loadingState, setLoadingState] = useState(undefined);
 	const switchToProject = () => {
-		console.log(projectName);
+		reload();
+	}
+
+	const reload = () => {
+		setLoadingState(new LoadingState(LoadingState.State.LOADING, null));
 	}
 
 	const handleProjectNameChange = (newValue) => {
@@ -26,7 +31,7 @@ function App() {
 						   onValueChanged={handleProjectNameChange}></TextField>
 				<Button onClick={switchToProject} title={'Switch'}></Button>
 			</div>
-			<ImageList></ImageList>
+			<ImageList loadingState={loadingState}></ImageList>
 			<footer>
 				<a className="bodySStrong colorTextPrimary" href="mailto:support@me.com">support@me.com</a>
 				<span className="subheadingS colorTextPrimary">© No Copyright 2024</span>
