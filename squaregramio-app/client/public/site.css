@@ -26,6 +26,10 @@ a:hover {
 	text-decoration: underline;
 }
 
+h1, h2, h3, h4 {
+	margin: 0;
+}
+
 ::placeholder { /* Most modern browsers support this */
 	color: var(--textSecondary, #FFF7FC);
 	opacity: 1;
@@ -45,6 +49,13 @@ a:hover {
 	font-size: 28px;
 	font-style: normal;
 	font-weight: 700;
+	line-height: normal;
+}
+
+.subheadingM {
+	font-size: 17px;
+	font-style: normal;
+	font-weight: 600;
 	line-height: normal;
 }
 

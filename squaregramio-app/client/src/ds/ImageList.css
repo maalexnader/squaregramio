@@ -1,4 +1,5 @@
 .image-list {
+	position: relative;
 	display: flex;
 	width: 100%;
 	padding: 0 var(--screenHorizontalPadding, 12px);
@@ -52,4 +53,44 @@
 	width: 64px;
 	height: 64px;
 	animation: fadeOutIn 2s infinite;
+}
+
+.image-list input {
+	display: none;
+}
+
+.image-list .items {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+	align-self: stretch;
+}
+
+.image-list .items .item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	align-self: stretch;
+}
+
+.image-list .items h3 {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	align-self: stretch;
+	flex: 1 0 0;
+}
+
+.image-list .upload {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%);
+	width: 64px;
+	cursor: pointer;
+}
+
+.image-list .upload.hidden {
+	display: none;
 }

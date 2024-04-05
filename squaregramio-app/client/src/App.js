@@ -4,6 +4,7 @@ import Button from "./ds/Button";
 import TextField from "./ds/TextField";
 import ImageList from "./ds/ImageList";
 import LoadingState from "./LoadingState";
+import PhotoModel from "models/PhotoModel";
 
 function App() {
 
@@ -15,6 +16,20 @@ function App() {
 
 	const reload = () => {
 		setLoadingState(new LoadingState(LoadingState.State.LOADING, null));
+		fetch('http://localhost:3000/api/project', {method: 'GET'})
+			.then((response) => {
+				if (response.ok) {
+					return response.json();
+				} else {
+					console.log('Project error');
+				}
+			})
+			.then((data) => {
+				setLoadingState(new LoadingState(LoadingState.State.LOADED, data));
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	const handleProjectNameChange = (newValue) => {
