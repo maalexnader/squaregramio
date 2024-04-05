@@ -13,4 +13,14 @@
 	align-items: center;
 	gap: var(--screenHorizontalPadding, 12px);
 	align-self: stretch;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.project-name .fields {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	align-self: stretch;
 }

@@ -9,6 +9,8 @@ import PhotoModel from "models/PhotoModel";
 function App() {
 
 	const [projectName, setProjectName] = useState('');
+	const [connectionString, setConnectionString] = useState('');
+
 	const [loadingState, setLoadingState] = useState(undefined);
 	const switchToProject = () => {
 		reload();
@@ -16,7 +18,7 @@ function App() {
 
 	const reload = () => {
 		setLoadingState(new LoadingState(LoadingState.State.LOADING, null));
-		fetch('http://localhost:3000/api/project', {method: 'GET'})
+		fetch(`http://localhost:3000/api/project/${projectName}?connectionString=${encodeURIComponent(connectionString)}`, {method: 'GET'})
 			.then((response) => {
 				if (response.ok) {
 					return response.json();
@@ -36,17 +38,37 @@ function App() {
 		setProjectName(newValue);
 	}
 
+	const handleConnectionStringChange = (newValue) => {
+		setConnectionString(newValue);
+	}
+
+	const uploadFile = (file) => {
+		const formData = new FormData();
+		formData.append('file', file);
+		formData.append('connectionString', connectionString);
+		fetch(`/api/project/${projectName}`, {
+			method: 'POST',
+			body: formData,
+		}).then((response) => {
+			reload();
+		}).catch();
+	}
+
 	return (
 		<div className="app">
 			<header className="centeredContainer">
 				<h1 className="title colorBrand">Squaregram.io</h1>
 			</header>
 			<div className="project-name">
-				<TextField placeholder={'Enter your project name'} value={projectName}
-						   onValueChanged={handleProjectNameChange}></TextField>
-				<Button onClick={switchToProject} title={'Switch'}></Button>
+				<div className="fields">
+					<TextField placeholder={'Project name'} value={projectName}
+							   onValueChanged={handleProjectNameChange}></TextField>
+					<TextField placeholder={'Connection string'} value={connectionString}
+							   onValueChanged={handleConnectionStringChange}></TextField>
+				</div>
+				<Button onClick={switchToProject} title={'Open project'}></Button>
 			</div>
-			<ImageList loadingState={loadingState}></ImageList>
+			<ImageList loadingState={loadingState} uploadFile={uploadFile}></ImageList>
 			<footer>
 				<a className="bodySStrong colorTextPrimary" href="mailto:support@me.com">support@me.com</a>
 				<span className="subheadingS colorTextPrimary">© No Copyright 2024</span>

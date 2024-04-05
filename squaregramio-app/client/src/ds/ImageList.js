@@ -3,12 +3,17 @@ import './ImageList.css';
 import LoadingState from "../LoadingState";
 import PhotoModel from "models/PhotoModel";
 
-const ImageList = ({loadingState}) => {
+const ImageList = ({loadingState, uploadFile}) => {
 	let uploadRef = React.createRef();
 
-	const upload = (ev) => {
+	const selectFile = (ev) => {
 		const input = uploadRef.current;
 		input.click();
+	}
+
+	const upload = () => {
+		const input = uploadRef.current;
+		uploadFile(input.files[0]);
 	}
 
 	return (
@@ -27,14 +32,15 @@ const ImageList = ({loadingState}) => {
 				{loadingState && loadingState.value && loadingState.value.map((item, index) => (
 					<div key={item.downloadUrl} className="item">
 						<h3 className="bodyMStrong colorTextPrimary">{item.name}</h3>
-						<a href={item.downloadUrl}><img src="/arrow.down.circle.svg" alt="Download"/></a>
+						<a href={item.downloadUrl} target="_blank"><img src="/arrow.down.circle.svg"
+																		alt="Download"/></a>
 					</div>
 				))}
 			</div>
-			<input id="upload" ref={uploadRef} type="file" className="hidden"/>
+			<input id="upload" ref={uploadRef} type="file" className="hidden" onChange={upload}/>
 			<img
 				className={loadingState && loadingState.state === LoadingState.State.LOADED ? "upload" : "upload hidden"}
-				src="/square.and.arrow.up.circle.fill.svg" alt="Upload" title="Upload" onClick={upload}/>
+				src="/square.and.arrow.up.circle.fill.svg" alt="Upload" title="Upload" onClick={selectFile}/>
 		</div>
 	);
 }
