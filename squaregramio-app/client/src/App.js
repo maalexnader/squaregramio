@@ -17,7 +17,7 @@ function App() {
 
 	const reload = () => {
 		setLoadingState(new LoadingState(LoadingState.State.LOADING, null));
-		fetch(`http://localhost:3000/api/project/${projectName}?connectionString=${encodeURIComponent(connectionString)}`, {method: 'GET'})
+		fetch(`/api/project/${projectName}?connectionString=${encodeURIComponent(connectionString)}`, {method: 'GET'})
 			.then((response) => {
 				if (response.ok) {
 					return response.json();
