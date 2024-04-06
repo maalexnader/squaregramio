@@ -43,7 +43,6 @@ jobs:
         with:
           name: node-app
           path: release.zip
-        working-directory: ./squaregramio-app
 
   deploy:
     runs-on: ubuntu-latest
