@@ -4,7 +4,6 @@ import Button from "./ds/Button";
 import TextField from "./ds/TextField";
 import ImageList from "./ds/ImageList";
 import LoadingState from "./LoadingState";
-import PhotoModel from "models/PhotoModel";
 
 function App() {
 

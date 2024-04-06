@@ -1,7 +1,6 @@
 import React from 'react';
 import './ImageList.css';
 import LoadingState from "../LoadingState";
-import PhotoModel from "models/PhotoModel";
 
 const ImageList = ({loadingState, uploadFile}) => {
 	let uploadRef = React.createRef();
