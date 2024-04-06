@@ -35,13 +35,14 @@ jobs:
         working-directory: ./squaregramio-app
 
       - name: Zip artifact for deployment
-        run: zip ./squaregramio-app/release.zip ./* -r
+        run: zip ./release.zip ./* -r
+      working-directory: ./squaregramio-app
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: node-app
-          path: release.zip
+        - name: Upload artifact for deployment job
+          uses: actions/upload-artifact@v3
+          with:
+            name: node-app
+            path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
