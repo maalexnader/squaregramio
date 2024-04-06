@@ -31,8 +31,9 @@ const ImageList = ({loadingState, uploadFile}) => {
 				{loadingState && loadingState.value && loadingState.value.map((item, index) => (
 					<div key={item.downloadUrl} className="item">
 						<h3 className="bodyMStrong colorTextPrimary">{item.name}</h3>
-						<a href={item.downloadUrl} target="_blank"><img src="/arrow.down.circle.svg"
-																		alt="Download"/></a>
+						<a href={item.downloadUrl} target="_blank" rel="noopener noreferrer"><img
+							src="/arrow.down.circle.svg"
+							alt="Download"/></a>
 					</div>
 				))}
 			</div>
