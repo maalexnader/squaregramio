@@ -21,18 +21,11 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm build react
-        run: |
-          npm install
-          npm run build --if-present
-        working-directory: ./squaregramio-app/client
-
       - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
-        working-directory: ./squaregramio-app
-
+          npm run test --if-present
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
@@ -64,9 +57,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DBFE3F0252DF44EA996AAF95BC8FB846 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_69EB167505BD498784BC2A50FA644C01 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E8A8509F6A7E4E258CFC3491AC396030 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7F4358E986AC45FA9F9F61D111F922B8 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_50E5197980CE40B2BF174654E53D54A4 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B350D6536A0F4BE291994D8D8CDCD2DA }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
