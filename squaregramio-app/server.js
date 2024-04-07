@@ -5,7 +5,7 @@ import {fileURLToPath} from 'url';
 import multer from 'multer';
 import Jimp from "jimp";
 
-import {BlobBatchClient, BlobServiceClient} from "@azure/storage-blob";
+import {BlobServiceClient} from "@azure/storage-blob";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,7 +26,9 @@ app.post('/api/project/:projectName', upload.single('file'), (req, res) => {
 		.then(red => {
 			res.json();
 		})
-		.catch();
+		.catch(error => {
+			res.status(500).send(error);
+		});
 
 });
 
@@ -37,7 +39,9 @@ app.get('/api/project/:projectName', (req, res) => {
 			const data = blobs.map(blob => new PhotoModel(blob.name, blob.url));
 			res.json(data);
 		})
-		.catch()
+		.catch(error => {
+			res.status(500).send(error);
+		})
 });
 
 app.listen(process.env.PORT || 3000, () => {
@@ -88,10 +92,9 @@ async function square(file) {
 			squareImage.setPixelColor(Jimp.rgbaToInt(red, green, blue, alpha), x - x0, y - y0);
 		});
 		console.log(image.getMIME());
-		const buffer = await squareImage.getBufferAsync(image.getMIME());
-		return buffer;
+		return await squareImage.getBufferAsync(image.getMIME());
 	} catch (err) {
-		console.log(err);
+		throw err;
 	}
 }
 
