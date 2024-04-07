@@ -82,7 +82,7 @@ async function square(file) {
 			const green = image.bitmap.data[idx + 1];
 			const blue = image.bitmap.data[idx + 2];
 			const alpha = image.bitmap.data[idx + 3];
-			squareImage.setPixelColor(Jimp.rgbaToInt(red, green, blue, alpha), x, y);
+			squareImage.setPixelColor(Jimp.rgbaToInt(red, green, blue, alpha), x - x0, y - y0);
 		});
 		console.log(image.getMIME());
 		const buffer = await squareImage.getBufferAsync(image.getMIME());
