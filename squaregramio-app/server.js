@@ -15,12 +15,14 @@ const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
 
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 app.post('/api/project/:projectName', upload.single('file'), (req, res) => {
-	uploadFile(req.params.projectName, req.body.connectionString, req.file)
+	const projectName = req.params.projectName.toLocaleLowerCase().replaceAll(' ', '').trim();
+	uploadFile(projectName, req.body.connectionString, req.file)
 		.then(red => {
 			res.json();
 		})
@@ -29,7 +31,8 @@ app.post('/api/project/:projectName', upload.single('file'), (req, res) => {
 });
 
 app.get('/api/project/:projectName', (req, res) => {
-	getFiles(req.params.projectName, req.query.connectionString)
+	const projectName = req.params.projectName.toLocaleLowerCase().replaceAll(' ', '').trim();
+	getFiles(projectName, req.query.connectionString)
 		.then(blobs => {
 			const data = blobs.map(blob => new PhotoModel(blob.name, blob.url));
 			res.json(data);

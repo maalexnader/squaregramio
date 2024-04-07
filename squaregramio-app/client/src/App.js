@@ -17,7 +17,7 @@ function App() {
 
 	const reload = () => {
 		setLoadingState(new LoadingState(LoadingState.State.LOADING, null));
-		fetch(`/api/project/${projectName}?connectionString=${encodeURIComponent(connectionString)}`, {method: 'GET'})
+		fetch(`/api/project/${encodeURIComponent(projectName)}?connectionString=${encodeURIComponent(connectionString)}`, {method: 'GET'})
 			.then((response) => {
 				if (response.ok) {
 					return response.json();
@@ -45,7 +45,7 @@ function App() {
 		const formData = new FormData();
 		formData.append('file', file);
 		formData.append('connectionString', connectionString);
-		fetch(`/api/project/${projectName}`, {
+		fetch(`/api/project/${encodeURIComponent(projectName)}`, {
 			method: 'POST',
 			body: formData,
 		}).then((response) => {

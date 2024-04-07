@@ -24,7 +24,8 @@ Here's a list of main technologies we use in Squaregram.io:
 
 1. Moving crop capabilities to a standalone service involves creating a dedicated system or API specifically for image cropping.
 2. Organize the images in the image list, sort them by the 'Date Added'. This ensures that your photos are displayed in chronological order, making it easier to navigate through your recent uploads.
-3. Design a UI for desktops
-4. Add AWS clooud provider
-5. Agg Google docs provider
-6. Add ability go generate ZIP file
+3. Handle erros
+4. Design a UI for desktops
+5. Add AWS clooud provider
+6. Agg Google docs provider
+7. Add ability go generate ZIP file
