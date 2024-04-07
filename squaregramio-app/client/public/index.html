@@ -20,4 +20,13 @@
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 </body>
+<script>
+	const updateViewPortHeight = () => {
+		const vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	};
+
+	window.addEventListener('resize', updateViewPortHeight);
+	updateViewPortHeight();
+</script>
 </html>

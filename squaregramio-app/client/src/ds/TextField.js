@@ -9,7 +9,7 @@ const TextField = ({placeholder, value, onValueChanged}) => {
 
 	return (
 		<div className="text-field">
-			<input className="bodyMStrong colorTextPrimary" type="text" placeholder={placeholder} value={value}
+			<input className="bodyMStrong colorTextInverted" type="text" placeholder={placeholder} value={value}
 				   onChange={handleInputValueChanged}/>
 		</div>
 	);
