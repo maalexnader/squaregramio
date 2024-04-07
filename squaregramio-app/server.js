@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/project/:projectName', upload.single('file'), (req, res) => {
-	const projectName = req.params.projectName.toLocaleLowerCase().replaceAll(' ', '').trim();
+	const projectName = normalizeProjectName(req.params.projectName);
 	uploadFile(projectName, req.body.connectionString, req.file)
 		.then(red => {
 			res.json();
@@ -31,7 +31,7 @@ app.post('/api/project/:projectName', upload.single('file'), (req, res) => {
 });
 
 app.get('/api/project/:projectName', (req, res) => {
-	const projectName = req.params.projectName.toLocaleLowerCase().replaceAll(' ', '').trim();
+	const projectName = normalizeProjectName(req.params.projectName);
 	getFiles(projectName, req.query.connectionString)
 		.then(blobs => {
 			const data = blobs.map(blob => new PhotoModel(blob.name, blob.url));
@@ -93,4 +93,8 @@ async function square(file) {
 	} catch (err) {
 		console.log(err);
 	}
+}
+
+function normalizeProjectName(projectName) {
+	return projectName.toLocaleLowerCase().replaceAll(' ', '').trim();
 }
