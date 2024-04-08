@@ -10,6 +10,7 @@ import {BlobServiceClient} from "@azure/storage-blob";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
+const port = process.env.PORT || 3000;
 
 const storage = multer.memoryStorage();
 const upload = multer({storage: storage});
@@ -44,7 +45,7 @@ app.get('/api/project/:projectName', (req, res) => {
 		})
 });
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(port, () => {
 	console.log('Server is running at http://localhost:3000');
 });
 
@@ -69,8 +70,6 @@ async function uploadFile(containerName, connectionString, file) {
 	const blobName = file.originalname;
 	let blockedBlobClient = containerClient.getBlockBlobClient(blobName);
 	let squareImage = await square(file);
-	console.log(squareImage);
-	console.log(squareImage.length);
 	return blockedBlobClient.upload(squareImage, squareImage.length, options);
 }
 
@@ -81,9 +80,6 @@ async function square(file) {
 		const squareImage = new Jimp(size, size);
 		const x0 = Math.max(0, Math.floor((image.bitmap.width - size) / 2));
 		const y0 = Math.max(0, Math.floor((image.bitmap.height - size) / 2));
-		console.log(size);
-		console.log(x0);
-		console.log(y0);
 		image.scan(x0, y0, size, size, (x, y, idx) => {
 			const red = image.bitmap.data[idx];
 			const green = image.bitmap.data[idx + 1];
@@ -91,7 +87,6 @@ async function square(file) {
 			const alpha = image.bitmap.data[idx + 3];
 			squareImage.setPixelColor(Jimp.rgbaToInt(red, green, blue, alpha), x - x0, y - y0);
 		});
-		console.log(image.getMIME());
 		return await squareImage.getBufferAsync(image.getMIME());
 	} catch (err) {
 		throw err;
