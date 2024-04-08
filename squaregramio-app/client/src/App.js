@@ -42,6 +42,7 @@ function App() {
 	}
 
 	const uploadFile = (file) => {
+		setLoadingState(new LoadingState(LoadingState.State.LOADING, null));
 		const formData = new FormData();
 		formData.append('file', file);
 		formData.append('connectionString', connectionString);
